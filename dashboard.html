@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add this line -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnityBankGTC - Login</title>
+    <!-- Your existing CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">UnityBankGTC</div>
+            <nav>
+                <a href="dashboard.html" class="nav-item active">🏠 Dashboard</a>
+                <a href="transactions.html" class="nav-item">📊 Transactions</a>
+                <a href="transfer.html" class="nav-item">💸 Transfer</a>
+                <a href="loans.html" class="nav-item">💰 Loans</a>
+                <a href="cards.html" class="nav-item">💳 Cards</a>
+                <a href="profile.html" class="nav-item">👤 Profile</a>
+                <a href="#" class="nav-item" onclick="AuthAPI.logout(); return false;">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1>Welcome, <span id="userName">User</span></h1>
+            
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <h3>Available Balance</h3>
+                <div class="balance-amount" id="balance">$0.00</div>
+                <div class="account-number" id="accountNumber">Account: ----</div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="action-btn" onclick="location.href='transfer.html'">
+                    <div class="icon">💸</div>
+                    <div>Send Money</div>
+                </div>
+                <div class="action-btn" onclick="location.href='loans.html'">
+                    <div class="icon">💰</div>
+                    <div>Request Loan</div>
+                </div>
+                <div class="action-btn" onclick="location.href='cards.html'">
+                    <div class="icon">💳</div>
+                    <div>My Cards</div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="transactions-list">
+                <h3>Recent Transactions</h3>
+                <div id="recentTransactions">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

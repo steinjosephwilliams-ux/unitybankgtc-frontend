@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add this line -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnityBankGTC - Login</title>
+    <!-- Your existing CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .virtual-card {
+            background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            position: relative;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .virtual-card.frozen {
+            background: linear-gradient(135deg, #6B7280 0%, #9CA3AF 100%);
+        }
+        .card-chip {
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        .card-number {
+            font-size: 1.25rem;
+            letter-spacing: 2px;
+            font-family: monospace;
+        }
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+        .card-actions {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        .freeze-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .add-card-btn {
+            background: white;
+            border: 2px dashed #3B82F6;
+            color: #3B82F6;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .add-card-btn:hover {
+            background: #EFF6FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-logo">UnityBankGTC</div>
+            <nav>
+                <a href="dashboard.html" class="nav-item">🏠 Dashboard</a>
+                <a href="transactions.html" class="nav-item">📊 Transactions</a>
+                <a href="transfer.html" class="nav-item">💸 Transfer</a>
+                <a href="loans.html" class="nav-item">💰 Loans</a>
+                <a href="cards.html" class="nav-item active">💳 Cards</a>
+                <a href="profile.html" class="nav-item">👤 Profile</a>
+                <a href="#" class="nav-item" onclick="AuthAPI.logout(); return false;">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1>My Cards</h1>
+            
+            <div class="cards-grid" id="cardsContainer">
+                <div class="add-card-btn" onclick="createCard()">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">+</div>
+                    <div>Create Virtual Card</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/cards.js"></script>
+</body>
+</html>

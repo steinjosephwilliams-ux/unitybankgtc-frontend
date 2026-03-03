@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add this line -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnityBankGTC - Login</title>
+    <!-- Your existing CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .danger-zone {
+            border: 1px solid var(--error);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .danger-zone h3 {
+            color: var(--error);
+            margin-bottom: 1rem;
+        }
+        .btn-danger {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-logo">UnityBankGTC</div>
+            <nav>
+                <a href="dashboard.html" class="nav-item">🏠 Dashboard</a>
+                <a href="transactions.html" class="nav-item">📊 Transactions</a>
+                <a href="transfer.html" class="nav-item">💸 Transfer</a>
+                <a href="loans.html" class="nav-item">💰 Loans</a>
+                <a href="cards.html" class="nav-item">💳 Cards</a>
+                <a href="profile.html" class="nav-item active">👤 Profile</a>
+                <a href="#" class="nav-item" onclick="AuthAPI.logout(); return false;">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1>My Profile</h1>
+            
+            <div class="profile-container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="avatar" id="userAvatar">U</div>
+                        <div>
+                            <h2 id="profileName">Loading...</h2>
+                            <p id="profileEmail" style="color: #6B7280;">...</p>
+                        </div>
+                    </div>
+                    
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="editName">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="editPhone">
+                        </div>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </form>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Change Password</h3>
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" id="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" id="newPassword" required minlength="8">
+                        </div>
+                        <button type="submit" class="btn-primary">Update Password</button>
+                    </form>
+                </div>
+
+                <div class="danger-zone">
+                    <h3>⚠️ Danger Zone</h3>
+                    <p>Once you delete your account, there is no going back.</p>
+                    <button class="btn-danger" onclick="closeAccount()">Close Account</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

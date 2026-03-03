@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add this line -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnityBankGTC - Login</title>
+    <!-- Your existing CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .loans-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .loans-grid { grid-template-columns: 1fr; }
+        }
+        .loan-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .loan-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+        .loan-item {
+            padding: 1rem;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .loan-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .status-pending { background: #FEF3C7; color: #92400E; }
+        .status-approved { background: #D1FAE5; color: #065F46; }
+        .status-active { background: #DBEAFE; color: #1E40AF; }
+        .status-completed { background: #E5E7EB; color: #374151; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-logo">UnityBankGTC</div>
+            <nav>
+                <a href="dashboard.html" class="nav-item">🏠 Dashboard</a>
+                <a href="transactions.html" class="nav-item">📊 Transactions</a>
+                <a href="transfer.html" class="nav-item">💸 Transfer</a>
+                <a href="loans.html" class="nav-item active">💰 Loans</a>
+                <a href="cards.html" class="nav-item">💳 Cards</a>
+                <a href="profile.html" class="nav-item">👤 Profile</a>
+                <a href="#" class="nav-item" onclick="AuthAPI.logout(); return false;">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h1>Loans</h1>
+            
+            <div class="loans-grid">
+                <!-- Apply for Loan -->
+                <div class="loan-card">
+                    <h3>Apply for Loan</h3>
+                    <form id="loanForm">
+                        <div class="form-group">
+                            <label>Amount Needed</label>
+                            <input type="number" id="loanAmount" min="1000" required placeholder="5000">
+                        </div>
+                        <div class="form-group">
+                            <label>Duration (Months)</label>
+                            <select id="loanDuration">
+                                <option value="6">6 months</option>
+                                <option value="12">12 months</option>
+                                <option value="24">24 months</option>
+                                <option value="36">36 months</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <input type="text" id="loanPurpose" placeholder="Business, Education, etc.">
+                        </div>
+                        <button type="submit" class="btn-primary">Submit Application</button>
+                    </form>
+                </div>
+
+                <!-- My Loans -->
+                <div class="loan-card">
+                    <h3>My Loans</h3>
+                    <div id="myLoans">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/loans.js"></script>
+</body>
+</html>
